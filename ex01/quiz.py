@@ -16,9 +16,9 @@ def shutudai():
 def kaitou(seikai):
     ans = input("答えるんだ:")
     if ans in seikai:
-        print("正解!!!")
+        print("正解です")
     else:
-        print("出直してこい!!!")
+        print("出直しして来てください")
 
 if __name__ == "__main__":
     main()
