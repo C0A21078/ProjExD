@@ -28,7 +28,7 @@ def shutudai():
     
     #対象文字から欠損文字を除いたもの⇒表示文字
     pre_char_list = [NUM_OF_ABS_CHARS]
-    print(f"表示文字:{pre_char_list}")
+    print(f"表示文字:{list(set(all_char_lst)-set(abs_char_list))}")
     return abs_char_list
 
 def kaitou(seikai):
