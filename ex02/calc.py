@@ -10,7 +10,7 @@ def button_click(event):
         entry.delete(0, tk.END)
         entry.insert(tk.END, res)
     elif num == "C":
-        entry.delete(0, tk.END)
+        entry.delete(1, tk.END)
     elif num == "㊙":
         tkm.showwarning("警告","このボタンを押したらいかんのです。")
     else:
