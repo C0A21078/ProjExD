@@ -1,11 +1,23 @@
 import tkinter as tk
 #簡易的な電卓作ってみた！
-root = tk.Tk()
-root.title("簡易的な電卓作ってみた！")
-root.geometry("300x500")
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.title("簡易的な電卓作ってみた！")
+    root.geometry("300x500")
 
-
-
+r, c = 0, 0 #行列
+for num in range(9, -1, -1):
+    btn = tk.Button(root, 
+                    text=f"{num}", 
+                    width=4, 
+                    height=2,
+                    font=("Times New Roman", 30)
+                    )
+    btn.grid(row=r, column=c)
+    c += 1
+    if (num-1)%3 == 0:
+        r += 1
+        c = 0
 
 
 root.mainloop()
