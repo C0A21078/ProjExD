@@ -1,4 +1,10 @@
 import tkinter as tk
+import tkinter.messagebox as tkm
+def button_click(event):
+    btn = event.widget
+    num = btn["text"]
+    tkm.showinfo("",f"{num}のボタンがクリックされました")
+
 #簡易的な電卓作ってみた！
 if __name__ == "__main__":
     root = tk.Tk()
@@ -18,6 +24,7 @@ for num in range(9, -1, -1):
     if (num-1)%3 == 0:
         r += 1
         c = 0
+    btn.bind("<1>", button_click)
 
 
 root.mainloop()
