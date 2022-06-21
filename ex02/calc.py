@@ -26,8 +26,8 @@ if __name__ == "__main__":
    root.title("簡易的な電卓作ってみた！")
    #root.geometry("300x500")
    
-   entry = tk.Entry(root,justify="right", width=10, font=("Times New Roman",40))
-   entry.grid(row=0, column=0, columnspan=3)
+   entry = tk.Entry(root,justify="right", width=13, font=("Times New Roman",40))
+   entry.grid(row=0, column=0, columnspan=4)
    
    r, c = 1, 0 #行列
    for i,num in enumerate(["㊙","B","C","/",7,8,9,"*",4,5,6,"*",1,2,3,"-",0,".","=","+"]):
