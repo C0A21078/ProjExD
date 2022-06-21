@@ -9,6 +9,12 @@ def button_click(event):
         res = eval(eqn)
         entry.delete(0, tk.END)
         entry.insert(tk.END, res)
+    elif num == "C":
+        entry.delete(0, tk.END)
+    elif num == "B":
+        entry.delete(1, tk.END)
+    elif num == "㊙":
+        tkm.showwarning("警告","このボタンを押したらいかんのです。")
     else:
         ##tkm.showinfo("",f"{num}のボタンがクリックされました")
         entry.insert(tk.END, num)
@@ -24,7 +30,7 @@ if __name__ == "__main__":
    entry.grid(row=0, column=0, columnspan=3)
    
    r, c = 1, 0 #行列
-   for i,num in enumerate([1,2,3,4,5,6,7,8,9,0,"=","+"]):
+   for i,num in enumerate(["㊙","B","C","/",7,8,9,"*",4,5,6,"*",1,2,3,"-",0,".","=","+"]):
        btn = tk.Button(root, 
                        text=f"{num}", 
                        width=4, 
@@ -35,7 +41,7 @@ if __name__ == "__main__":
        btn.grid(row=r, column=c)
 
        c += 1
-       if (i+1)%3 == 0:
+       if (i+1)%4 == 0:
            r += 1
            c = 0
     
