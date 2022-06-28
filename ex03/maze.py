@@ -41,7 +41,8 @@ if __name__ == "__main__":
                        )
     canvas.pack()
     maze_bg = mm.make_maze(15, 9)
-    print(maze_bg)  #確認迷路の
+    mm.show_maze(canvas, maze_bg)
+    #print(maze_bg)  #確認迷路の
 
     tori = tk.PhotoImage(file="fig/8.png")
     cx, cy = 300, 400
