@@ -11,7 +11,7 @@ def key_up(event):
     key = ""
 
 def main_proc():
-    global cx, cy
+    global cx, cy, mx, my
     #delta = {
     #         ""     : [0,   0],
     #         "Up"   : [0, -20],
@@ -21,10 +21,11 @@ def main_proc():
     #        }
     #cx, cy= cx+delta[key][0], cy+delta[key][1]
 
-    if key == "Up": cy -= 20
-    if key == "Down": cy +=20
-    if key == "Left": cx -=20
-    if key == "Right": cx +=20
+    if key == "Up": my -= 1
+    if key == "Down": my +=1
+    if key == "Left": mx -=1
+    if key == "Right": mx +=1
+    cx, cy = mx*100+50, my*100+50
 
     canvas.coords("tori", cx, cy)
     root.after(100, main_proc)
@@ -42,10 +43,12 @@ if __name__ == "__main__":
     canvas.pack()
     maze_bg = mm.make_maze(15, 9)
     mm.show_maze(canvas, maze_bg)
-    #print(maze_bg)  #確認迷路の
+    #print(maze_bg)  #確認,迷路
 
     tori = tk.PhotoImage(file="fig/8.png")
-    cx, cy = 300, 400
+    #cx, cy = 300, 400
+    mx, my = 1, 1
+    cx, cy = mx*100+50, my*100+50
     canvas.create_image(cx, cy, image=tori, tag="tori")
 
     key = ""
