@@ -10,6 +10,25 @@ def key_up(event):
     global key
     key = ""
 
+#7
+def main_proc():
+    global cx, cy
+    #delta = {                   #key:押されているkeyの値[x, y]
+    #         ""     : [0,   0],
+    #        "Up"   : [0, -20],
+    #         "Down" : [0, +20],
+    #         "Left" : [-20, 0],
+    #         "Right": [+20, 0],
+    #        }
+    #cx, cy= cx+delta[key][0], cy+delta[key][1]
+    if key == "Up": cy -= 20
+    if key == "Down": cy +=20
+    if key == "Left": cx -=20
+    if key == "Right": cx +=20
+
+    canvas.coords("tori", cx, cy)
+    root.after(10, main_proc)
+
 
 if __name__ == "__main__":
     #1
@@ -36,4 +55,5 @@ if __name__ == "__main__":
     #6
     root.bind("<KeyRelease>", key_up)
 
+    main_proc()     
     root.mainloop()
