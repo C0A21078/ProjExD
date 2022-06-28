@@ -4,7 +4,7 @@ if __name__ == "__main__":
     #1
     root = tk.Tk()
     root.title("迷えるこうかとん")
-    
+
     #2
     canvas = tk.Canvas(root,
                        width= 1500,
@@ -12,8 +12,10 @@ if __name__ == "__main__":
                        bg="black"
                        )
     canvas.pack()
-    root.mainloop()
-    canvas = tk.Canvas(root)
-    koukaton = tk.PhotoImage(file="./fig/5.png")
+
+    #3
+    tori = tk.PhotoImage(file="fig/8.png")
     cx, cy = 300, 400
-    canvas.create_image(cx, cy, image=koukaton, tag="koukaton")
+    canvas.create_image(cx, cy, image=tori, tag="tori")
+
+    root.mainloop()
