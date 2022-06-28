@@ -1,9 +1,15 @@
 import tkinter as tk
-#6
+#5
 def key_down(event):
     global key
     key = event.keysym
-    print(f"{key}が押されました")
+    #print(f"{key}が押されました")  バインドしているかどうかの確認⇒ターミナル
+
+#6
+def key_up(event):
+    global key
+    key = ""
+
 
 if __name__ == "__main__":
     #1
@@ -27,5 +33,7 @@ if __name__ == "__main__":
     key = ""
     #5
     root.bind("<KeyPress>", key_down)
+    #6
+    root.bind("<KeyRelease>", key_up)
 
     root.mainloop()
