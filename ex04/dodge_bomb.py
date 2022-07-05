@@ -1,3 +1,4 @@
+import re
 import pygame as pg
 import sys
 
@@ -9,8 +10,21 @@ def main():
     bgimg_sfc  = pg.image.load("fig/pg_bg.jpg")     #Surface
     bgimg_rct  = bgimg_sfc.get_rect()               #Rect
     screen_sfc.blit(bgimg_sfc, bgimg_rct)
-    pg.display.update()                       
-    clock.tick(0.2)
+
+    #pg.display.update()                       
+    clock.tick(1)
+
+    while True:
+        screen_sfc.blit(bgimg_sfc, bgimg_rct)
+        
+        #練習2
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                return
+
+        pg.display.update()  
+        clock.tick(1000)
+        
 
 if __name__ == "__main__":
     pg.init()
