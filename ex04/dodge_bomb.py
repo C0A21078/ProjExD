@@ -29,6 +29,7 @@ def main():
     bomimg_rct = bomimg_sfc.get_rect()
     bomimg_rct.centerx = random.randint(0, screen_rct.width)
     bomimg_rct.centery = random.randint(0, screen_rct.height)
+    vx, vy = +1, +1
 
     while True:
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
@@ -47,6 +48,8 @@ def main():
         if key_states[pg.K_RIGHT] == True: kkimg_rct.centerx +=1         #x座標を+1
         screen_sfc.blit(kkimg_sfc, kkimg_rct)
 
+        #問6
+        bomimg_rct.move_ip(vx, vy)
         #問5
         screen_sfc.blit(bomimg_sfc, bomimg_rct)
 
