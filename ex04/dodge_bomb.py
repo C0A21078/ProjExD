@@ -1,10 +1,10 @@
-import re
 import pygame as pg
 import sys
+import random
 
 def main():
     clock = pg.time.Clock()
-    #問1
+    #問1　スクリーンと背景画像
     pg.display.set_caption("逃げろ!こうかとん")
     screen_sfc = pg.display.set_mode((1600, 900))          #Surface
     screen_rct = screen_sfc.get_rect()                     #Rect
@@ -12,11 +12,23 @@ def main():
     bgimg_rct  = bgimg_sfc.get_rect()                      #Rect
     screen_sfc.blit(bgimg_sfc, bgimg_rct)
 
-    #問3
+    #問3　こうかとん
     kkimg_sfc = pg.image.load("fig/3.png")                 #Surface
     kkimg_sfc = pg.transform.rotozoom(kkimg_sfc, 0, 2.0)   #Surface
     kkimg_rct = kkimg_sfc.get_rect()                       #Rect
     kkimg_rct.center = 900, 400
+
+    #問5 爆弾
+    bomimg_sfc = pg.Surface((20, 20))                      #Surface
+    bomimg_sfc.set_colorkey((0, 0, 0))
+    pg.draw.circle(bomimg_sfc, (255, 0, 0),  (10,10), 10)
+    #pg.draw.circle(bomimg_sfc, (191, 0, 0), (10,10),  5)
+    #pg.draw.circle(bomimg_sfc, (127, 0, 0), (10,10), 30)
+    #pg.draw.circle(bomimg_sfc, ( 63, 0, 0), (10,10), 20)
+    #pg.draw.circle(bomimg_sfc, (  0, 0, 0), (10,10), 10)
+    bomimg_rct = bomimg_sfc.get_rect()
+    bomimg_rct.centerx = random.randint(0, screen_rct.width)
+    bomimg_rct.centery = random.randint(0, screen_rct.height)
 
     while True:
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
@@ -34,6 +46,9 @@ def main():
         if key_states[pg.K_LEFT]  == True: kkimg_rct.centerx -=1         #x座標を-1
         if key_states[pg.K_RIGHT] == True: kkimg_rct.centerx +=1         #x座標を+1
         screen_sfc.blit(kkimg_sfc, kkimg_rct)
+
+        #問5
+        screen_sfc.blit(bomimg_sfc, bomimg_rct)
 
         pg.display.update()  
         clock.tick(1000)
