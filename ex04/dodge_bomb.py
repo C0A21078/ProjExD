@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 import random
+import tkinter as tk
+import tkinter.messagebox as tkm
 
 def main():
     clock = pg.time.Clock()
@@ -18,28 +20,52 @@ def main():
     kkimg_rct = kkimg_sfc.get_rect()                       #Rect
     kkimg_rct.center = 900, 400
 
-    #問5 爆弾
+    #問5 爆弾1
     bomimg_sfc = pg.Surface((20, 20))                      #Surface
     bomimg_sfc.set_colorkey((0, 0, 0))
     pg.draw.circle(bomimg_sfc, (255, 0, 0), (10,10), 10)
-    #pg.draw.circle(bomimg_sfc, (191, 0, 0), (10,10), 40)
-    #pg.draw.circle(bomimg_sfc, (127, 0, 0), (10,10), 30)
-    #pg.draw.circle(bomimg_sfc, ( 63, 0, 0), (10,10), 20)
-    #pg.draw.circle(bomimg_sfc, (  0, 0, 0), (10,10), 10)
-
     bomimg_rct = bomimg_sfc.get_rect()
     bomimg_rct.centerx = random.randint(0, screen_rct.width)
     bomimg_rct.centery = random.randint(0, screen_rct.height)
     vx, vy = +1, +1
 
+
+    #追加ボタン2つ
+    button = pg.Rect(30, 30, 50, 50)  # creates a rect object
+    button2 = pg.Rect(100, 30, 70, 50)  # creates a rect object
+    #フォントの用意  
+    font = pg.font.SysFont(None, 25)
+    #テキストの設定
+    text1 = font.render("!!!",   True, (0,0,0))
+    text2 = font.render("SPEED", True, (0,0,0))
+    running = True
+
+    
     while True:
         screen_sfc.blit(bgimg_sfc, bgimg_rct)
         #screen_sfc.blit(kkimg_sfc, kkimg_rct)
+
+        pg.draw.rect(screen_sfc, (255, 0, 0), button)
+        pg.draw.rect(screen_sfc, (0, 255, 0), button2)
+
         
         #問2
         for event in pg.event.get():
             if event.type == pg.QUIT:
+                running = False
                 return
+            #追加ボタン　押したときの反応
+            if event.type == pg.KEYDOWN and event.key == pg.K_F1:
+                vx, vy = 0, 0
+            if event.type == pg.KEYDOWN and event.key == pg.K_F2:
+                vx, vy = +1, +1
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if button.collidepoint(event.pos):
+                    kkimg_sfc = pg.transform.rotozoom(kkimg_sfc, 0, 2.0)
+                    print("red button was pressed")
+                if button2.collidepoint(event.pos):
+                    vx, vy = +10, +10
+                    print("green button was pressed")
         
         #問4
         key_states = pg.key.get_pressed()                   #辞書
@@ -63,11 +89,19 @@ def main():
         vx *= yoko
         vy *= tate
 
-        if kkimg_rct.colliderect(bomimg_rct):return
-        #if bomimg_rct.collidedict(kkimg_rct): return
+        #ボタンの文字の位置
+        screen_sfc.blit(text1, (40, 45))
+        screen_sfc.blit(text2, (105,45))
 
+        #問8
+        if kkimg_rct.colliderect(bomimg_rct):
+            tkm.showwarning("GAME OVER","もう一度挑戦してね")
+            return
+        
         pg.display.update()  
         clock.tick(1000)
+    
+    
 
 #問7
 def check_bound(rct, scr_rct):
