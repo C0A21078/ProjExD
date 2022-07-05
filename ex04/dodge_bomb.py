@@ -63,6 +63,9 @@ def main():
         vx *= yoko
         vy *= tate
 
+        if kkimg_rct.colliderect(bomimg_rct):return
+        #if bomimg_rct.collidedict(kkimg_rct): return
+
         pg.display.update()  
         clock.tick(1000)
 
