@@ -69,23 +69,24 @@ class Shot:
             return True
         return False 
 
-def drawWindow(ship,drops):
+def drawWindow(ship,players):
     ship.draw()
 
-    for i in drops:
+    for i in players:
         i.draw()
 
-    for b in flowers:
+    for b in enemyes:
         b.draw()
         b.move()  
     pygame.display.update()
 
-drops = []
-flowers = []
+#敵の生成
+players = []
+enemyes = []
 shootloop = 0
 for i in range(20):
     x = i*60 + 80
-    flowers.append(Enemy(win,x))
+    enemyes.append(Enemy(win,x))
 ship = Player(win)
 run = True
 
@@ -100,27 +101,28 @@ while run:
         shootloop += 1
     if shootloop > 20:
         shootloop = 0
-
+    
+    #弾の打ち出し＆音
     if keys[pygame.K_SPACE] and shootloop == 0:
         #if len(drops) <= 5:
-        drops.append(Shot(win,ship.x))
+        players.append(Shot(win,ship.x))
         pygame.display.update()
         mixer.init()
         mixer.music.load("fig/手裏剣を投げる.mp3")
         mixer.music.play(1)
         shootloop = 1
 
-    for drop in drops:
+    for drop in players:
         if drop.y > 0:
             drop.y -= 1
         else:
-            drops.pop(drops.index(drop))    
+            players.pop(players.index(drop))    
 
-        for flower in flowers:
+        for flower in players:
             if drop.collide(drop,flower):
-                drops.pop(drops.index(drop))
+                players.pop(players.index(drop))
 
-    for flower in flowers:
+    for flower in enemyes:
         if flower.x > 600 or flower.x < 0:
             flower.edge = True
 
@@ -129,7 +131,7 @@ while run:
 
     ship.move(keys)
     win.fill((0, 0, 0))
-    drawWindow(ship,drops)
+    drawWindow(ship,players)
 
 
 
